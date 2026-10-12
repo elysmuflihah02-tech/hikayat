@@ -1,0 +1,1049 @@
+Put your HTML text here<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Interaktif Hikayat - Bahasa Indonesia Kelas X Fase E</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        royal: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#1e3a8a',
+                            700: '#1d2a44',
+                            800: '#0f172a',
+                            900: '#090d16',
+                        },
+                        gold: {
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .text-reading-highlight {
+            background-color: #fef08a;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased selection:bg-amber-200 selection:text-amber-900">
+
+    <div id="app" class="min-h-screen flex flex-col justify-between">
+        
+        <!-- Header / Navbar Utama -->
+        <header class="bg-slate-900 text-white border-b-4 border-amber-500 sticky top-0 z-50 shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-900 font-bold text-2xl shadow-md">
+                        <i class="fa-solid font-serif">H</i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-amber-400 tracking-wider uppercase">Bahasa Indonesia • Fase E (Kelas X)</span>
+                        <h1 class="text-lg md:text-xl font-bold font-serif text-slate-100 leading-none">Petualangan Menyimak Hikayat</h1>
+                    </div>
+                </div>
+                
+                <!-- Status Pembelajaran / Skor -->
+                <div class="hidden md:flex items-center space-x-6 bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-star text-amber-400 text-lg"></i>
+                        <span class="text-xs text-slate-300">Poin Eksplorasi: <strong id="user-points" class="text-amber-400 text-sm">0</strong></span>
+                    </div>
+                    <div class="h-4 w-px bg-slate-700"></div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-graduation-cap text-emerald-400 text-lg"></i>
+                        <span class="text-xs text-slate-300">Progres Modul: <strong id="progress-percent" class="text-emerald-400 text-sm">0%</strong></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+            
+            <!-- Grid Layout: Sidebar Navigation + Content Body -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <aside class="lg:col-span-3 space-y-4">
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Navigasi Pembelajaran</h2>
+                        <nav class="space-y-2">
+                            <button onclick="switchTab('apersepsi')" id="nav-apersepsi" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center space-x-3 transition-all bg-amber-500 text-white shadow-md">
+                                <i class="fa-solid fa-chalkboard-user w-5 text-center"></i>
+                                <span>1. Sapaan Guru & Tujuan</span>
+                            </button>
+                            <button onclick="switchTab('glosarium')" id="nav-glosarium" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 flex items-center space-x-3 transition-all">
+                                <i class="fa-solid fa-book-bookmark w-5 text-center"></i>
+                                <span>2. Glosarium Arkais</span>
+                            </button>
+                            <button onclick="switchTab('menyimak')" id="nav-menyimak" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 flex items-center space-x-3 transition-all">
+                                <i class="fa-solid fa-headphones w-5 text-center"></i>
+                                <span>3. Zona Menyimak</span>
+                            </button>
+                            <button onclick="switchTab('analisis')" id="nav-analisis" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 flex items-center space-x-3 transition-all">
+                                <i class="fa-solid fa-scale-balanced w-5 text-center"></i>
+                                <span>4. Analisis Nilai & Pesan</span>
+                            </button>
+                            <button onclick="switchTab('kuis')" id="nav-kuis" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 flex items-center space-x-3 transition-all">
+                                <i class="fa-solid fa-circle-question w-5 text-center"></i>
+                                <span>5. Kuis Menilai Pesan</span>
+                            </button>
+                            <button onclick="switchTab('refleksi')" id="nav-refleksi" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 flex items-center space-x-3 transition-all">
+                                <i class="fa-solid fa-pen-nib w-5 text-center"></i>
+                                <span>6. Jurnal Refleksi & LKPD</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- Info Guru Pendamping Panel -->
+                    <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-5 text-white shadow-sm border border-slate-700">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-sm">Bapak/Ibu Guru</h3>
+                                <p class="text-xs text-amber-400">Pengampu Bahasa Indonesia</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed italic">
+                            "Hikayat bukan sekadar cerita tua. Di dalamnya tersimpan kompas moral bangsa yang perlu kita uji kritis relevansinya hari ini!"
+                        </p>
+                    </div>
+                </aside>
+
+                <!-- Content Area Dynamic Panels -->
+                <section class="lg:col-span-9">
+                    
+                    <!-- TAB 1: APERSEPSI & TUJUAN -->
+                    <div id="tab-apersepsi" class="tab-content block space-y-6">
+                        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+                            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold mb-4">
+                                <i class="fa-solid fa-bullhorn"></i>
+                                <span>Pengantar & Tujuan Pembelajaran</span>
+                            </div>
+                            
+                            <h2 class="text-2xl md:text-3xl font-bold font-serif text-slate-900 mb-4">
+                                Menjelajah Nilai-Nilai Kehidupan dalam Hikayat Indera Bangsawan
+                            </h2>
+
+                            <p class="text-slate-600 leading-relaxed mb-6">
+                                Halo Pembelajar Hebat Kelas X! Selamat datang di media pembelajaran interaktif Bahasa Indonesia. Pada modul ini, kita akan mengasah ketrampilan **Menyimak Teks Sastra Lisan Hikayat** serta belajar **menilai pesan moral/nilai kehidupan** yang terkandung di dalamnya secara kritis dan kontekstual.
+                            </p>
+
+                            <!-- Target Capaian & Indikator -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                                    <div class="flex items-center space-x-3 text-indigo-900 font-bold text-sm mb-2">
+                                        <i class="fa-solid fa-bullseye text-indigo-600"></i>
+                                        <span>Tujuan Pembelajaran (TP)</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Siswa mampu **menilai pesan dan nilai-nilai kehidupan** (agama, moral, sosial, budaya) setelah menyimak teks sastra lisan hikayat serta membandingkan relevansinya dengan kehidupan masyarakat modern saat ini.
+                                    </p>
+                                </div>
+
+                                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                                    <div class="flex items-center space-x-3 text-amber-900 font-bold text-sm mb-2">
+                                        <i class="fa-solid fa-list-check text-amber-600"></i>
+                                        <span>Indikator Keberhasilan</span>
+                                    </div>
+                                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                        <li>Mengidentifikasi kata-kata arkais dalam hikayat.</li>
+                                        <li>Mengidentifikasi nilai-nilai kehidupan dalam kutipan hikayat.</li>
+                                        <li>Menilai secara kritis apakah pesan tersebut masih relevan kini.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Petunjuk Langkah Belajar -->
+                            <div class="border-t border-slate-100 pt-6">
+                                <h3 class="text-sm font-bold text-slate-900 mb-3">4 Langkah Mudah Belajar Mandiri:</h3>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                                    <div class="p-3 rounded-xl bg-amber-50 text-amber-900 border border-amber-200">
+                                        <span class="block font-bold text-lg mb-1">01</span>
+                                        <span class="text-xs font-semibold">Pahami Kata Arkais</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-blue-50 text-blue-900 border border-blue-200">
+                                        <span class="block font-bold text-lg mb-1">02</span>
+                                        <span class="text-xs font-semibold">Simak Audio Teks</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-emerald-50 text-emerald-900 border border-emerald-200">
+                                        <span class="block font-bold text-lg mb-1">03</span>
+                                        <span class="text-xs font-semibold">Bedah Nilai Pesan</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-purple-50 text-purple-900 border border-purple-200">
+                                        <span class="block font-bold text-lg mb-1">04</span>
+                                        <span class="text-xs font-semibold">Refleksi & Kuis</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Button -->
+                            <div class="mt-8 flex justify-end">
+                                <button onclick="switchTab('glosarium')" class="px-6 py-3 rounded-xl bg-slate-900 text-amber-400 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center space-x-2 shadow-lg">
+                                    <span>Mulai Langkah 1: Glosarium Arkais</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: GLOSARIUM KATA ARKAIS -->
+                    <div id="tab-glosarium" class="tab-content hidden space-y-6">
+                        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                                <div>
+                                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-semibold mb-2">
+                                        <i class="fa-solid fa-spell-check"></i>
+                                        <span>Pondasi Menyimak</span>
+                                    </div>
+                                    <h2 class="text-2xl font-bold font-serif text-slate-900">Glosarium Bahasa Arkais</h2>
+                                    <p class="text-xs text-slate-500 mt-1">Hikayat kaya akan bahasa kuno (arkais). Klik kartu untuk mempelajari maknanya sebelum menyimak cerita!</p>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Flashcards Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="arkais-cards-container">
+                                <!-- Dynamic Javascript render will insert cards here -->
+                            </div>
+
+                            <!-- Interactive Quiz Mini Check for Arkais -->
+                            <div class="mt-8 bg-slate-50 rounded-xl p-5 border border-slate-200">
+                                <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center space-x-2">
+                                    <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                                    <span>Mini-Tantangan Kata Arkais</span>
+                                </h3>
+                                <p class="text-xs text-slate-600 mb-4">Lengkapi kalimat berikut: <em>"______ berangkatanlah raja beserta para hulubalang menuju istana."</em></p>
+                                <div class="flex flex-wrap gap-2" id="mini-quiz-arkais">
+                                    <button onclick="checkMiniQuiz('Hatta', true)" class="px-4 py-2 bg-white border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all">Hatta</button>
+                                    <button onclick="checkMiniQuiz('Buluh', false)" class="px-4 py-2 bg-white border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all">Buluh</button>
+                                    <button onclick="checkMiniQuiz('Mahakaya', false)" class="px-4 py-2 bg-white border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all">Mahakaya</button>
+                                </div>
+                                <div id="mini-quiz-feedback" class="mt-3 text-xs hidden font-medium"></div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="mt-8 flex justify-between">
+                                <button onclick="switchTab('apersepsi')" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 text-sm font-semibold hover:bg-slate-50">
+                                    Kembali
+                                </button>
+                                <button onclick="switchTab('menyimak')" class="px-6 py-2.5 rounded-xl bg-slate-900 text-amber-400 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center space-x-2">
+                                    <span>Lanjut ke Zona Menyimak</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: ZONA MENYIMAK (AUDIO & STORY TEKS) -->
+                    <div id="tab-menyimak" class="tab-content hidden space-y-6">
+                        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+                            
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                                <div>
+                                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold mb-2">
+                                        <i class="fa-solid fa-headphones"></i>
+                                        <span>Kegiatan Inti Menyimak</span>
+                                    </div>
+                                    <h2 class="text-2xl font-bold font-serif text-slate-900">Hikayat Indera Bangsawan</h2>
+                                    <p class="text-xs text-slate-500">Dengarkan audio narasi secara saksama atau baca teks hikayat berikut untuk menemukan pesan moralnya.</p>
+                                </div>
+
+                                <!-- Audio Player Controller -->
+                                <div class="bg-slate-900 text-white p-3 rounded-2xl flex items-center space-x-3 shadow-md">
+                                    <button id="btn-audio-play" onclick="toggleAudioSpeech()" class="w-10 h-10 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center hover:bg-amber-400 transition-all">
+                                        <i class="fa-solid fa-play text-sm" id="audio-icon"></i>
+                                    </button>
+                                    <div class="text-left pr-2">
+                                        <div class="text-[10px] uppercase tracking-wider text-amber-400 font-bold">Fitur Suara Narrator</div>
+                                        <div class="text-xs text-slate-300" id="audio-status font-mono">Klik untuk dengarkan cerita</div>
+                                    </div>
+                                    <button onclick="stopAudioSpeech()" class="text-slate-400 hover:text-white text-xs px-2">
+                                        <i class="fa-solid fa-stop"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Narrative Text Container -->
+                            <div class="bg-amber-50/50 border border-amber-200/80 rounded-2xl p-6 max-h-[420px] overflow-y-auto custom-scrollbar text-slate-800 leading-relaxed text-sm md:text-base space-y-4 font-serif">
+                                <p id="p1">
+                                    <span class="font-bold text-amber-800">Sebermula</span> tersebutlah perkataan Raja Indera Bundak dari Negeri Kobat Syahrial. Baginda tidak mempunyai anak. Maka baginda pun memohon doa kepada Dewa Mahakaya dengan menundukkan kepala dan berbuat amal sedekah kepada fakir miskin. Hatta beberapa lamanya, Istri Baginda, Tuan Putri Sitti Kertas, pun hamil dan melahirkan dua orang putra kembar yang tampan: <strong class="text-slate-900">Indera Bangsawan</strong> dan <strong class="text-slate-900">Syah Peri</strong>.
+                                </p>
+                                <p id="p2">
+                                    Tatkala genap usia kedua putra itu beranjak dewasa, Raja Indera Bundak hendak memilih siapakah di antara mereka yang berhak menggantikan tahta kerajaan. Maka Baginda bertitah: <em>"Barang siapa di antara kamu yang dapat membawa pulang **Buluh Perindu** (bambu ajaib penawar duka), dialah yang akan kuangkat menjadi Raja!"</em>
+                                </p>
+                                <p id="p3">
+                                    Maka berangkatlah kedua putra raja itu mengembara ke hutan belantara. Di tengah jalan, badai topan bertiup sangat dahsyat sehingga Indera Bangsawan dan Syah Peri terpisah jauh. 
+                                </p>
+                                <p id="p4">
+                                    Syah Peri sampai di suatu negeri yang telah dibinasakan oleh Raksasa Garuda. Di sana ia bertemu Putri Ratna Sari yang terkurung dalam mahligai. Syah Peri dengan penuh keberanian dan keikhlasan bertarung melawan Garuda hingga raksasa itu tewas, lalu membebaskan sang Putri tanpa mengharapkan balasan tahta.
+                                </p>
+                                <p id="p5">
+                                    Sementara itu, Indera Bangsawan sampai di suatu gua tempat raksasa Buraksa yang sering memangsa rakyat Negeri Antah Berantah. Indera Bangsawan tidak mengandalkan otot semata, melainkan kecerdikan dan kesabaran. Ia menyamar menjadi anak gembala yang hina, merawat masyarakat yang sakit, dan menyusun strategi matang untuk memperdaya Buraksa demi mengambil penawar penyakit Putri Kemala Sari.
+                                </p>
+                                <p id="p6">
+                                    Meskipun saudara kembarnya mendapat kehormatan besar di tempat lain, Indera Bangsawan dan Syah Peri tidak pernah saling iri hati atau berebut tahta. Mereka tetap saling menyayangi dan bersama-sama menjaga kedamaian rakyatnya.
+                                </p>
+                            </div>
+
+                            <!-- Highlighting Characteristics Box -->
+                            <div class="mt-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center space-x-2">
+                                    <i class="fa-solid fa-magnifying-glass text-indigo-500"></i>
+                                    <span>Karakteristik Hikayat yang Ditemukan:</span>
+                                </h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                    <div class="bg-white p-2 rounded-lg border border-slate-200"><strong class="text-amber-700">Kemustahilan:</strong> Raksasa Garuda & Buluh Perindu.</div>
+                                    <div class="bg-white p-2 rounded-lg border border-slate-200"><strong class="text-amber-700">Kesaktian:</strong> Menikahi putri dari dalam mahligai gaib.</div>
+                                    <div class="bg-white p-2 rounded-lg border border-slate-200"><strong class="text-amber-700">Istana Sentris:</strong> Tokoh Raja & Putra Mahkota.</div>
+                                    <div class="bg-white p-2 rounded-lg border border-slate-200"><strong class="text-amber-700">Arkais:</strong> Sebermula, Hatta, Titah.</div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="mt-8 flex justify-between">
+                                <button onclick="switchTab('glosarium')" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 text-sm font-semibold hover:bg-slate-50">
+                                    Kembali
+                                </button>
+                                <button onclick="switchTab('analisis')" class="px-6 py-2.5 rounded-xl bg-slate-900 text-amber-400 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center space-x-2">
+                                    <span>Lanjut ke Analisis Nilai</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: LABORATORIUM ANALISIS NILAI & PESAN -->
+                    <div id="tab-analisis" class="tab-content hidden space-y-6">
+                        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+                            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-semibold mb-2">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                                <span>Menilai Nilai & Pesan Moral</span>
+                            </div>
+                            <h2 class="text-2xl font-bold font-serif text-slate-900 mb-2">Laboratorium Analisis Nilai-Nilai Hikayat</h2>
+                            <p class="text-xs text-slate-500 mb-6">Cocokkan kutipan cerita dengan nilai kehidupan yang tepat, lalu tentukan apakah nilai tersebut **Masih Relevan** atau **Sudah Tidak Relevan** di masa modern.</p>
+
+                            <!-- Interactive Drag/Select Matching Board -->
+                            <div class="space-y-4" id="value-matching-container">
+                                <!-- Cards generated dynamically by JavaScript -->
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="mt-8 flex justify-between">
+                                <button onclick="switchTab('menyimak')" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 text-sm font-semibold hover:bg-slate-50">
+                                    Kembali
+                                </button>
+                                <button onclick="switchTab('kuis')" class="px-6 py-2.5 rounded-xl bg-slate-900 text-amber-400 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center space-x-2">
+                                    <span>Uji Pemahaman di Kuis</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: KUIS INTERAKTIF MENILAI PESAN -->
+                    <div id="tab-kuis" class="tab-content hidden space-y-6">
+                        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+                            <div class="flex items-center justify-between mb-6">
+                                <div>
+                                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-semibold mb-2">
+                                        <i class="fa-solid fa-circle-question"></i>
+                                        <span>Evaluasi Kritis Menyimak</span>
+                                    </div>
+                                    <h2 class="text-2xl font-bold font-serif text-slate-900">Kuis Evaluasi Menilai Pesan Hikayat</h2>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-slate-400 block">Soal Aktif</span>
+                                    <span id="quiz-progress-text" class="text-lg font-bold text-amber-600">1 / 4</span>
+                                </div>
+                            </div>
+
+                            <!-- Quiz Body Container -->
+                            <div id="quiz-card" class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                                <div id="quiz-question-title" class="font-bold text-slate-800 text-base md:text-lg mb-4 leading-snug">
+                                    Loading question...
+                                </div>
+
+                                <div id="quiz-options" class="space-y-3">
+                                    <!-- Dynamic Options JS -->
+                                </div>
+
+                                <!-- Feedback Explanation Container -->
+                                <div id="quiz-explanation" class="mt-5 p-4 rounded-xl hidden text-xs leading-relaxed"></div>
+                            </div>
+
+                            <!-- Quiz Footer Actions -->
+                            <div class="mt-6 flex justify-between items-center">
+                                <button id="btn-prev-quiz" onclick="prevQuizQuestion()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-600 text-xs font-semibold disabled:opacity-50">
+                                    Soal Sebelumnya
+                                </button>
+                                <button id="btn-next-quiz" onclick="nextQuizQuestion()" class="px-6 py-2.5 rounded-xl bg-amber-500 text-slate-900 font-bold text-xs hover:bg-amber-400 transition-all shadow-md">
+                                    Soal Berikutnya
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 6: REFLEKSI & LKPD DIGITAL -->
+                    <div id="tab-refleksi" class="tab-content hidden space-y-6">
+                        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+                            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-teal-100 text-teal-800 text-xs font-semibold mb-2">
+                                <i class="fa-solid fa-pen-nib"></i>
+                                <span>Refleksi & Hasil Kerja</span>
+                            </div>
+                            <h2 class="text-2xl font-bold font-serif text-slate-900 mb-2">Jurnal Refleksi & Generasi LKPD</h2>
+                            <p class="text-xs text-slate-500 mb-6">Tuliskan penilaian kritismu terhadap pesan moral cerita hikayat di bawah ini, lalu unduh/cetak sebagai bukti tugas LKPD Bahasa Indonesia.</p>
+
+                            <!-- Student Info Form -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap Siswa</label>
+                                    <input type="text" id="student-name" placeholder="Masukkan nama..." class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs focus:ring-2 focus:ring-amber-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Kelas / Fase</label>
+                                    <input type="text" id="student-class" value="X / Fase E" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs focus:ring-2 focus:ring-amber-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Tanggal Tugas</label>
+                                    <input type="text" id="student-date" readonly class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-slate-100 text-xs text-slate-500">
+                                </div>
+                            </div>
+
+                            <!-- Reflection Prompt Box -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-800 mb-1">
+                                        1. Pesan moral apakah dalam Hikayat Indera Bangsawan yang paling berkesan bagi Anda? Mengapa?
+                                    </label>
+                                    <textarea id="reflect-q1" rows="3" placeholder="Tulis analisis penilaianmu di sini..." class="w-full p-3 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-800 mb-1">
+                                        2. Menurut Anda, apakah pemilihan seorang pemimpin pada era modern saat ini masih tepat jika didasarkan pada 'kesaktian' atau 'ujian fisik' seperti dalam Hikayat? Berikan alasan kriticalmu!
+                                    </label>
+                                    <textarea id="reflect-q2" rows="3" placeholder="Bandingkan dengan syarat kriteria pemimpin masa kini (pendidikan, integritas, rekam jejak)..." class="w-full p-3 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Export / Print Button -->
+                            <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-100">
+                                <div class="text-xs text-slate-500">
+                                    <i class="fa-solid fa-circle-info text-amber-500 mr-1"></i>
+                                    Pastikan semua tugas & kuis telah diisi sebelum mencetak.
+                                </div>
+                                <button onclick="generateLKPDPrint()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-500 transition-all flex items-center justify-center space-x-2 shadow-lg">
+                                    <i class="fa-solid fa-print"></i>
+                                    <span>Cetak / Unduh Hasil LKPD</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs border-t border-slate-800 mt-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <p>© 2026 Media Pembelajaran Interaktif Bahasa Indonesia • Fase E (Kelas X SMA/SMK)</p>
+                <p class="mt-1 text-slate-500">Materi Hikayat: Menyimak & Menilai Pesan Moral Teks Sastra Lisan</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Notification Toast Modal (Replaces alert) -->
+    <div id="toast-modal" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl border border-amber-500 flex items-center space-x-3">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-amber-400 text-lg"></i>
+            <span id="toast-message" class="text-xs font-semibold">Pesan Notifikasi</span>
+        </div>
+    </div>
+
+    <script>
+        // State Management
+        const state = {
+            points: 0,
+            completedSections: new Set(['apersepsi']),
+            speechSynth: window.speechSynthesis,
+            speechUtterance: null,
+            isPlayingAudio: false,
+            currentQuizIndex: 0,
+            quizScore: 0,
+            userQuizAnswers: {},
+            valueAnalysisAnswers: {}
+        };
+
+        // Data 1: Kata Arkais
+        const arkaisData = [
+            { word: "Hatta", type: "Kata Penghubung", meaning: "Lalu; kemudian; sesudah itu.", example: "Hatta beberapa lamanya, baginda pun berputra." },
+            { word: "Sebermula", type: "Kata Pembuka", meaning: "Pada mulanya; pembukaan cerita.", example: "Sebermula tersebutlah kisah seorang raja." },
+            { word: "Titah", type: "Kata Benda", meaning: "Perintah atau kata-kata dari raja.", example: "Maka baginda pun bertitah kepada para putra." },
+            { word: "Syahdan", type: "Kata Penghubung", meaning: "Selanjutnya; selain dari itu.", example: "Syahdan berjalanlah ia menuju bukit." },
+            { word: "Mahligai", type: "Kata Benda", meaning: "Istana tempat kediaman raja atau putri.", example: "Putri tinggal di mahligai yang sangat indah." },
+            { word: "Buluh", type: "Kata Benda", meaning: "Bambu.", example: "Baginda menyuruh mencari Buluh Perindu." }
+        ];
+
+        // Data 2: Nilai-Nilai Hikayat
+        const valuesData = [
+            {
+                id: 1,
+                quote: "Baginda memohon doa kepada Dewa Mahakaya dan berbuat amal sedekah kepada fakir miskin.",
+                correctValue: "Nilai Agama",
+                options: ["Nilai Agama", "Nilai Budaya", "Nilai Estetika"],
+                relevanceDefault: "Masih Relevan",
+                explanation: "Berdoa kepada Tuhan dan bersedekah adalah ajaran keagamaan yang universal dan tetap relevan hingga kapan pun."
+            },
+            {
+                id: 2,
+                quote: "Syah Peri dan Indera Bangsawan tidak pernah iri hati atau berebut tahta, melainkan saling mendukung.",
+                correctValue: "Nilai Moral",
+                options: ["Nilai Moral", "Nilai Politik", "Nilai Ekonomi"],
+                relevanceDefault: "Masih Relevan",
+                explanation: "Kasih sayang dan tidak iri terhadap saudara adalah moral positif yang wajib dijaga dalam keluarga."
+            },
+            {
+                id: 3,
+                quote: "Indera Bangsawan menolong rakyat Negeri Antah Berantah yang menderita penyakit akibat perbuatan Raksasa Buraksa.",
+                correctValue: "Nilai Sosial",
+                options: ["Nilai Sosial", "Nilai Budaya", "Nilai Agama"],
+                relevanceDefault: "Masih Relevan",
+                explanation: "Empati dan kepedulian membantu sesama manusia yang kesusahan adalah wujud nilai sosial teruji."
+            },
+            {
+                id: 4,
+                quote: "Raja menentukan pengganti tahta kerajaan berdasarkan siapa yang berhasil menemukan benda ajaib (Buluh Perindu).",
+                correctValue: "Nilai Budaya",
+                options: ["Nilai Budaya", "Nilai Pendidikan", "Nilai Moral"],
+                relevanceDefault: "Tidak Relevan",
+                explanation: "Sistem suksesi kepemimpinan kuno berbasis benda gaib/kekuatan mistis sudah tidak relevan di era modern yang mengedepankan kualifikasi, keahlian, dan demokrasi."
+            }
+        ];
+
+        // Data 3: Kuis Soal Evaluasi
+        const quizQuestions = [
+            {
+                id: 1,
+                question: "Sikap apakah dari tokoh Indera Bangsawan yang patut diteladani saat menghadapi Raksasa Buraksa?",
+                options: [
+                    "A. Menggunakan kemarahan dan kekerasan fisik semata.",
+                    "B. Mengandalkan kecerdikan, kesabaran, dan strategi yang matang.",
+                    "C. Pasrah dan melarikan diri dari medan pertempuran.",
+                    "D. Meminta bantuan saudara kembarnya untuk membalas dendam."
+                ],
+                correct: 1,
+                explanation: "Indera Bangsawan tidak bertindak gegabah; ia menyamar dan mengatur strategi cerdik dengan sabar untuk mengalahkan musuh."
+            },
+            {
+                id: 2,
+                question: "Pesan moral utama yang terkandung dalam hubungan persaudaraan antara Indera Bangsawan dan Syah Peri adalah...",
+                options: [
+                    "A. Persaingan ketat untuk membuktikan siapa yang paling sakti.",
+                    "B. Saling mengalah demi mendapatkan tahta kerajaan terbesar.",
+                    "C. Ketulusan persaudaraan tanpa rasa iri hati meski diberi ujian berat.",
+                    "D. Keharusan menuruti titah raja agar mendapatkan warisan."
+                ],
+                correct: 2,
+                explanation: "Meskipun diuji dengan kompetisi mencari Buluh Perindu, keduanya tetap saling menyayangi dan tidak iri hati."
+            },
+            {
+                id: 3,
+                question: "Manakah di antara nilai berikut yang SUDAH TIDAK RELEVAN diterapkan dalam kepemimpinan masa kini?",
+                options: [
+                    "A. Pemimpin harus menyayangi dan mengasihi rakyat miskin.",
+                    "B. Pemimpin dipilih berdasarkan kepemilikan benda keramat/sakti.",
+                    "C. Pemimpin harus cerdik dan memiliki keahlian memecahkan masalah.",
+                    "D. Pemimpin harus taat beribadah dan bermoral baik."
+                ],
+                correct: 1,
+                explanation: "Pemilihan pemimpin berdasarkan benda sakti/gaib adalah tradisi lama. Masa kini pemimpin dipilih berdasarkan kompetensi, integritas, dan rekam jejak."
+            },
+            {
+                id: 4,
+                question: "Mengapa kita perlu bersikap kritis ketika menilai pesan atau nilai-nilai dalam teks hikayat?",
+                options: [
+                    "A. Agar kita dapat menghapus seluruh teks hikayat dari sejarah.",
+                    "B. Agar kita bisa memilah nilai luhur yang dapat diterapkan dan meninggalkan tradisi yang tidak sesuai zaman.",
+                    "C. Karena hikayat tidak memiliki manfaat bagi kehidupan manusia.",
+                    "D. Untuk membuktikan bahwa sastra modern selalu lebih baik dari sastra klasik."
+                ],
+                correct: 1,
+                explanation: "Sikap kritis memungkinkan kita mengambil kearifan lokal yang baik dan menyaring hal-hal yang sudah tidak sesuai dengan zaman."
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current date
+            const dateObj = new Date();
+            document.getElementById('student-date').value = dateObj.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            renderArkaisCards();
+            renderValueAnalysis();
+            renderQuizCard();
+            updateProgress();
+        });
+
+        // Tab Navigation Switcher
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Unselect all nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+            });
+
+            // Show target content
+            const targetContent = document.getElementById(`tab-${tabId}`);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+
+            // Highlight target nav button
+            const targetNav = document.getElementById(`nav-${tabId}`);
+            if (targetNav) {
+                targetNav.classList.remove('text-slate-600', 'hover:bg-slate-100');
+                targetNav.classList.add('bg-amber-500', 'text-white', 'shadow-md');
+            }
+
+            // Track completed sections
+            state.completedSections.add(tabId);
+            updateProgress();
+
+            // Stop speech synthesis if changing tab away from menyimak
+            if (tabId !== 'menyimak') {
+                stopAudioSpeech();
+            }
+        }
+
+        // Render Arkais Cards
+        function renderArkaisCards() {
+            const container = document.getElementById('arkais-cards-container');
+            container.innerHTML = '';
+
+            arkaisData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-amber-400 hover:shadow-md transition-all cursor-pointer group";
+                card.onclick = () => showToast(`Makna "${item.word}": ${item.meaning}`);
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-serif font-bold text-lg text-amber-900 group-hover:text-amber-600">${item.word}</span>
+                        <span class="text-[10px] font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">${item.type}</span>
+                    </div>
+                    <p class="text-xs text-slate-700 font-medium mb-2">${item.meaning}</p>
+                    <p class="text-[11px] text-slate-500 italic bg-white p-2 rounded border border-slate-100">"${item.example}"</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Mini Quiz Arkais Check
+        function checkMiniQuiz(word, isCorrect) {
+            const feedback = document.getElementById('mini-quiz-feedback');
+            feedback.classList.remove('hidden', 'text-emerald-600', 'text-rose-600');
+            if (isCorrect) {
+                feedback.classList.add('text-emerald-600');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Jawaban Tepat! Kata "<strong>${word}</strong>" bermakna 'Lalu/Kemudian' dan merupakan konjungsi khas hikayat. (+10 Poin)`;
+                addPoints(10);
+            } else {
+                feedback.classList.add('text-rose-600');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Kurang Tepat. Pilihan yang benar adalah "<strong>Hatta</strong>".`;
+            }
+        }
+
+        // Text-to-Speech Narration Feature
+        function toggleAudioSpeech() {
+            if (state.isPlayingAudio) {
+                stopAudioSpeech();
+            } else {
+                startAudioSpeech();
+            }
+        }
+
+        function startAudioSpeech() {
+            if (!('speechSynthesis' in window)) {
+                showToast("Maaf, peramban Anda tidak mendukung narasi suara.", "warning");
+                return;
+            }
+
+            // Get full text from narrative paragraphs
+            const paragraphs = ["p1", "p2", "p3", "p4", "p5", "p6"];
+            let fullText = paragraphs.map(id => document.getElementById(id).innerText).join(" ");
+
+            state.speechUtterance = new SpeechSynthesisUtterance(fullText);
+            state.speechUtterance.lang = 'id-ID'; // Indonesian Language Code
+            state.speechUtterance.rate = 0.9; // Slight slow down for clarity
+
+            state.speechUtterance.onstart = () => {
+                state.isPlayingAudio = true;
+                document.getElementById('audio-icon').className = 'fa-solid fa-pause text-sm';
+                document.getElementById('audio-status').innerText = 'Sedang membacakan cerita...';
+            };
+
+            state.speechUtterance.onend = () => {
+                stopAudioSpeech();
+                showToast("Selesai menyimak hikayat! Selamat! (+20 Poin)");
+                addPoints(20);
+            };
+
+            state.speechUtterance.onerror = () => {
+                stopAudioSpeech();
+                showToast("Audio narasi selesai atau terhenti.");
+            };
+
+            window.speechSynthesis.speak(state.speechUtterance);
+        }
+
+        function stopAudioSpeech() {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+            state.isPlayingAudio = false;
+            const icon = document.getElementById('audio-icon');
+            const status = document.getElementById('audio-status');
+            if (icon) icon.className = 'fa-solid fa-play text-sm';
+            if (status) status.innerText = 'Klik untuk dengarkan cerita';
+        }
+
+        // Render Laboratorium Nilai-Nilai Hikayat
+        function renderValueAnalysis() {
+            const container = document.getElementById('value-matching-container');
+            container.innerHTML = '';
+
+            valuesData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-sm space-y-4";
+                
+                card.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <span class="w-6 h-6 rounded-full bg-slate-900 text-amber-400 font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">${index + 1}</span>
+                        <blockquote class="text-xs md:text-sm text-slate-800 font-serif italic border-l-2 border-amber-500 pl-3">
+                            "${item.quote}"
+                        </blockquote>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-200">
+                        <!-- Step 1: Identifikasi Nilai -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">1. Jenis Nilai Kehidupan:</label>
+                            <select onchange="checkValueChoice(${item.id}, this.value)" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-amber-500 outline-none">
+                                <option value="">-- Pilih Nilai --</option>
+                                ${item.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                            </select>
+                        </div>
+
+                        <!-- Step 2: Penilaian Relevansi Masa Kini -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">2. Penilaian Relevansi Masa Kini:</label>
+                            <div class="flex space-x-2">
+                                <button onclick="selectRelevance(${item.id}, 'Masih Relevan', this)" class="rel-btn-${item.id} flex-1 py-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-all">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i> Masih Relevan
+                                </button>
+                                <button onclick="selectRelevance(${item.id}, 'Tidak Relevan', this)" class="rel-btn-${item.id} flex-1 py-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-rose-50 hover:text-rose-700 transition-all">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mr-1"></i> Tidak Relevan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="value-feedback-${item.id}" class="hidden p-3 rounded-lg text-xs leading-relaxed"></div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function checkValueChoice(itemId, selectedValue) {
+            const item = valuesData.find(v => v.id === itemId);
+            const feedbackEl = document.getElementById(`value-feedback-${itemId}`);
+            
+            if (!selectedValue) {
+                feedbackEl.classList.add('hidden');
+                return;
+            }
+
+            feedbackEl.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-900', 'bg-rose-50', 'text-rose-900');
+
+            if (selectedValue === item.correctValue) {
+                feedbackEl.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-200');
+                feedbackEl.innerHTML = `<strong class="font-bold"><i class="fa-solid fa-check"></i> Tepat!</strong> Ini adalah <strong>${item.correctValue}</strong>. ${item.explanation}`;
+                addPoints(15);
+            } else {
+                feedbackEl.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-200');
+                feedbackEl.innerHTML = `<strong class="font-bold"><i class="fa-solid fa-xmark"></i> Kurang Pas.</strong> Pilihan yang paling tepat adalah <strong>${item.correctValue}</strong>. Coba analisis lagi hubungannya dengan cerita.`;
+            }
+        }
+
+        function selectRelevance(itemId, relevance, btn) {
+            // Style toggling
+            document.querySelectorAll(`.rel-btn-${itemId}`).forEach(b => {
+                b.classList.remove('bg-amber-500', 'text-white', 'border-amber-500');
+            });
+            btn.classList.add('bg-amber-500', 'text-white', 'border-amber-500');
+
+            state.valueAnalysisAnswers[itemId] = relevance;
+            showToast(`Penilaian Relevansi Tersimpan: "${relevance}"`);
+            addPoints(5);
+        }
+
+        // Quiz System Functions
+        function renderQuizCard() {
+            const q = quizQuestions[state.currentQuizIndex];
+            document.getElementById('quiz-progress-text').innerText = `${state.currentQuizIndex + 1} / ${quizQuestions.length}`;
+            
+            const questionTitle = document.getElementById('quiz-question-title');
+            questionTitle.innerText = `${q.id}. ${q.question}`;
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            const prevUserChoice = state.userQuizAnswers[q.id];
+
+            q.options.forEach((optText, optIndex) => {
+                const isSelected = prevUserChoice === optIndex;
+                const optBtn = document.createElement('button');
+                optBtn.className = `w-full text-left p-3.5 rounded-xl border text-xs md:text-sm font-medium transition-all flex items-center justify-between ${
+                    isSelected 
+                    ? 'bg-slate-900 text-amber-400 border-slate-900 shadow-md' 
+                    : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+                }`;
+                optBtn.onclick = () => selectQuizAnswer(q.id, optIndex);
+                
+                optBtn.innerHTML = `
+                    <span>${optText}</span>
+                    <i class="${isSelected ? 'fa-solid fa-circle-dot text-amber-400' : 'fa-regular fa-circle text-slate-300'} text-base"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+
+            // Handle explanation box visibility
+            const expBox = document.getElementById('quiz-explanation');
+            if (prevUserChoice !== undefined) {
+                expBox.classList.remove('hidden');
+                if (prevUserChoice === q.correct) {
+                    expBox.className = "mt-5 p-4 rounded-xl text-xs leading-relaxed bg-emerald-100 text-emerald-900 border border-emerald-300 block";
+                    expBox.innerHTML = `<strong><i class="fa-solid fa-circle-check"></i> Jawaban Anda Benar!</strong><br>${q.explanation}`;
+                } else {
+                    expBox.className = "mt-5 p-4 rounded-xl text-xs leading-relaxed bg-rose-100 text-rose-900 border border-rose-300 block";
+                    expBox.innerHTML = `<strong><i class="fa-solid fa-circle-xmark"></i> Jawaban Kurang Tepat.</strong><br>${q.explanation}`;
+                }
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Button state
+            document.getElementById('btn-prev-quiz').disabled = (state.currentQuizIndex === 0);
+        }
+
+        function selectQuizAnswer(questionId, optionIndex) {
+            const q = quizQuestions[state.currentQuizIndex];
+            state.userQuizAnswers[questionId] = optionIndex;
+
+            if (optionIndex === q.correct) {
+                addPoints(25);
+            }
+
+            renderQuizCard();
+        }
+
+        function nextQuizQuestion() {
+            if (state.currentQuizIndex < quizQuestions.length - 1) {
+                state.currentQuizIndex++;
+                renderQuizCard();
+            } else {
+                calculateFinalQuizScore();
+            }
+        }
+
+        function prevQuizQuestion() {
+            if (state.currentQuizIndex > 0) {
+                state.currentQuizIndex--;
+                renderQuizCard();
+            }
+        }
+
+        function calculateFinalQuizScore() {
+            let correctCount = 0;
+            quizQuestions.forEach(q => {
+                if (state.userQuizAnswers[q.id] === q.correct) {
+                    correctCount++;
+                }
+            });
+
+            state.quizScore = Math.round((correctCount / quizQuestions.length) * 100);
+            showToast(`Kuis Selesai! Skor Evaluasi Anda: ${state.quizScore}/100`, "success");
+            
+            // Switch to reflection
+            setTimeout(() => {
+                switchTab('refleksi');
+            }, 1200);
+        }
+
+        // Helper Points & Progress Functions
+        function addPoints(amount) {
+            state.points += amount;
+            document.getElementById('user-points').innerText = state.points;
+        }
+
+        function updateProgress() {
+            const totalSections = 6;
+            const progress = Math.round((state.completedSections.size / totalSections) * 100);
+            document.getElementById('progress-percent').innerText = `${progress}%`;
+        }
+
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast-modal');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = message;
+            
+            if (type === "warning") {
+                toastIcon.className = "fa-solid fa-triangle-exclamation text-amber-400 text-lg";
+            } else {
+                toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-lg";
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Generate Printable LKPD Document
+        function generateLKPDPrint() {
+            const name = document.getElementById('student-name').value.trim() || 'Siswa Kelas X';
+            const studentClass = document.getElementById('student-class').value || 'X / Fase E';
+            const date = document.getElementById('student-date').value;
+            const q1 = document.getElementById('reflect-q1').value.trim() || 'Belum diisi.';
+            const q2 = document.getElementById('reflect-q2').value.trim() || 'Belum diisi.';
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>LKPD Hikayat - ${name}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 40px; color: #1e293b; line-height: 1.6; }
+                        .header { border-bottom: 2px solid #0f172a; padding-bottom: 15px; margin-bottom: 25px; }
+                        .header h1 { margin: 0; font-size: 20px; color: #0f172a; text-transform: uppercase; }
+                        .header p { margin: 5px 0 0; font-size: 12px; color: #64748b; }
+                        .meta-table { width: 100%; margin-bottom: 25px; border-collapse: collapse; }
+                        .meta-table td { padding: 6px 0; font-size: 13px; }
+                        .section-title { font-size: 14px; font-weight: bold; background: #f1f5f9; padding: 8px 12px; border-left: 4px solid #ca8a04; margin-top: 20px; margin-bottom: 10px; }
+                        .box { border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; font-size: 12px; margin-bottom: 15px; background: #fafafa; }
+                        .score-badge { font-size: 18px; font-weight: bold; color: #047857; text-align: right; }
+                        .footer { margin-top: 40px; border-top: 1px border #e2e8f0; pt: 20px; font-size: 11px; text-align: center; color: #94a3b8; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Lembar Kerja Peserta Didik (LKPD) Digital</h1>
+                        <p>Materi Bahasa Indonesia Class X Fase E: Menyimak & Menilai Pesan Hikayat</p>
+                    </div>
+
+                    <table class="meta-table">
+                        <tr>
+                            <td width="15%"><strong>Nama Siswa:</strong> ${name}</td>
+                            <td width="35%"><strong>Kelas/Fase:</strong> ${studentClass}</td>
+                            <td width="30%"><strong>Tanggal:</strong> ${date}</td>
+                            <td width="20%" class="score-badge">Skor Kuis: ${state.quizScore}/100</td>
+                        </tr>
+                    </table>
+
+                    <div class="section-title">A. Catatan Poin Eksplorasi</div>
+                    <div class="box">
+                        <strong>Total Poin Aktivitas Interaktif:</strong> ${state.points} Poin
+                    </div>
+
+                    <div class="section-title">B. Analisis Jurnal Refleksi Kritis</div>
+                    <p style="font-size: 12px; font-weight: bold;">1. Pesan Moral Hikayat yang Paling Berkesan:</p>
+                    <div class="box">${q1}</div>
+
+                    <p style="font-size: 12px; font-weight: bold;">2. Penilaian Relevansi Pemilihan Pemimpin Masa Kini vs Hikayat:</p>
+                    <div class="box">${q2}</div>
+
+                    <div style="margin-top: 50px; display: flex; justify-content: space-between;">
+                        <div style="text-align: center; font-size: 12px;">
+                            <p>Orang Tua / Wali Siswa</p>
+                            <br><br><br>
+                            <p>( _______________________ )</p>
+                        </div>
+                        <div style="text-align: center; font-size: 12px;">
+                            <p>Guru Pengampu Bahasa Indonesia</p>
+                            <br><br><br>
+                            <p>( _______________________ )</p>
+                        </div>
+                    </div>
+
+                    <div class="footer">
+                        Dicetak secara otomatis melalui Media Pembelajaran Interaktif Hikayat Fase E
+                    </div>
+                    <script>
+                        window.onload = function() { window.print(); }
+                    <\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+    </script>
+</body>
+</html>
